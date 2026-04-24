@@ -1,0 +1,9 @@
+[Unit]
+Description=Synchronisation config DNS LXC 411 vers llmcore
+After=network.target AdGuardHome.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/dns-sync-to-llmcore.sh
+StandardOutput=journal
+StandardError=journal

@@ -1,0 +1,12 @@
+[Unit]
+Description=Timer synchronisation DNS LXC 411 vers llmcore (toutes les 5 min)
+Requires=dns-sync-to-llmcore.service
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+Unit=dns-sync-to-llmcore.service
+AccuracySec=30s
+
+[Install]
+WantedBy=timers.target
