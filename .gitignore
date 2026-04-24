@@ -1,0 +1,15 @@
+*.log
+*.tmp
+.env
+.env.*
+*.bak
+*.bak-*
+secrets/
+credentials/
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+tmp/
+scratch/
