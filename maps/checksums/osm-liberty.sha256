@@ -1,3 +1,6 @@
-# OSM Liberty assets — SHA256 captured at install time (sources/osm-liberty.sources)
-# Repo: https://github.com/maputnik/osm-liberty (BSD-3)
-# Pinned commit: SET_AT_INSTALL_TIME (record in install-static-assets.sh)
+# OSM Liberty assets
+# Commit: 249aa029fad743b0371850a4914a2537206f372f
+# Captured: 2026-04-24T21:52:50Z
+794a5efb4f47727ddf21ffb6682c1d433d50e0f90f251e0ebbcddd01b852a35c  osm-liberty.png
+a10980c0727e076faa7f22dfbcdb1508475bef5e73cad33f51a9f54b706ab2ac  osm-liberty@2x.png
+50012851e6d1329464308b0a4e5fcaa82e1c63da21abe3df8b968e8306e03eaf  style.json
