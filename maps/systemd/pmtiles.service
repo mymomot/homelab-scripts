@@ -1,0 +1,42 @@
+[Unit]
+Description=go-pmtiles serve (planet.pmtiles via NFS)
+After=network-online.target remote-fs.target
+Requires=network-online.target
+Wants=remote-fs.target
+
+[Service]
+Type=simple
+User=pmtiles
+Group=pmtiles
+ExecStart=/usr/local/bin/go-pmtiles serve /mnt/truenas/scanlib/rawsources/maps/pmtiles \
+    --port 8080 \
+    --interface 192.168.10.98 \
+    --public-url https://maps.lab.mymomot.ovh/tiles \
+    --cors https://maps.lab.mymomot.ovh
+
+Restart=on-failure
+RestartSec=5
+
+# Council C12 — Memory caps (MemoryHigh retiré, MemoryMax suffit)
+MemoryMax=1G
+
+# Council C2 — IOWeight bas (priorité moindre vs nexus)
+IOWeight=50
+
+# Council C4 — Hardening systemd (12 directives)
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectHome=true
+ProtectSystem=strict
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictNamespaces=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+ReadOnlyPaths=/mnt/truenas/scanlib/rawsources/maps/pmtiles
+
+[Install]
+WantedBy=multi-user.target
