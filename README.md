@@ -29,6 +29,12 @@ Tous les scripts touchant un service LIVE créent un backup horodaté avant modi
 
 Scripts DNS : voir `dns/README.md`
 
+## Projets externalisés
+
+- **mymaps** — viewer cartographique souverain `maps.lab.mymomot.ovh` — extrait 2026-04-25 vers projet dédié.
+  Repo Forgejo : http://localhost:3000/motreffs/mymaps
+  (maps/, monitoring/check-pmtiles-*, docs/specs/2026-04-24-pmtiles-serving-design.md extraits)
+
 ## Conventions
 
 - Idempotence obligatoire — ré-exécution sans effet si déjà appliqué
