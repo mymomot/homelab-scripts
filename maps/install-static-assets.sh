@@ -42,10 +42,15 @@ cd osm-liberty
 ACTUAL_COMMIT=$(git rev-parse HEAD)
 echo "[assets] osm-liberty pinned commit: ${ACTUAL_COMMIT}"
 
-# Patch style.json : remplacer source URL par /tiles/planet.json (pattern réel go-pmtiles v1.30.2)
+# Patch style.json :
+#   - remplacer source URL par /tiles/planet.json (pattern réel go-pmtiles v1.30.2)
+#   - retirer source externe natural_earth_shaded_relief (souveraineté offline-first)
+#   - retirer les layers qui consomment natural_earth_shaded_relief
 jq '.sources.openmaptiles.url = "/tiles/planet.json" |
     .glyphs = "/fonts/{fontstack}/{range}.pbf" |
-    .sprite = "/sprites/osm-liberty"' style.json > "${TMP_DIR}/style.json"
+    .sprite = "/sprites/osm-liberty" |
+    del(.sources.natural_earth_shaded_relief) |
+    .layers = [.layers[] | select(.source == null or .source != "natural_earth_shaded_relief")]' style.json > "${TMP_DIR}/style.json"
 
 sudo install -o caddy -g caddy -m 0644 "${TMP_DIR}/style.json" "${WWW_ROOT}/style.json"
 
@@ -88,8 +93,9 @@ unzip -q v2.0.zip -d omt-fonts-extracted
 sudo cp -r omt-fonts-extracted/* "${WWW_ROOT}/fonts/"
 sudo chown -R caddy:caddy "${WWW_ROOT}/fonts"
 
-# --- 4. index.html viewer ---
-sudo install -o caddy -g caddy -m 0644 "${REPO_ROOT}/maps/viewer/index.html" "${WWW_ROOT}/index.html"
+# --- 4. Viewer assets (index.html + maps-init.js) ---
+sudo install -o caddy -g caddy -m 0644 "${REPO_ROOT}/maps/viewer/index.html"   "${WWW_ROOT}/index.html"
+sudo install -o caddy -g caddy -m 0644 "${REPO_ROOT}/maps/viewer/maps-init.js" "${WWW_ROOT}/maps-init.js"
 
 echo "[assets] Done. /var/www/maps/ contents:"
 ls -la "${WWW_ROOT}/"
