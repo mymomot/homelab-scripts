@@ -65,5 +65,6 @@ Aucun pour l'instant. À envisager : Forgejo Actions lint python (ruff) + shellc
 
 | Date | Action |
 |------|--------|
+| 2026-04-25 | Viewer browser-ready : fix CSP inline externalized + dépendance CDN externe supprimée (commit `bbe60ac`) — CV5 dettes POST-déploiement |
 | 2026-04-24 | Phase 6-9 maps.lab.mymomot.ovh LIVE : 3 health checks + Traefik 3 YAML + ROLLBACK.md + E2E 5 PASS |
 | 2026-04-24 | Création repo, import script adguard-hardening Session 1 |
