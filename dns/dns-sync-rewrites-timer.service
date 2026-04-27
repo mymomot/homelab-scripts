@@ -1,0 +1,7 @@
+[Unit]
+Description=DNS rewrites sync LXC411 -> llmcore
+After=network.target AdGuardHome.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/dns-sync-rewrites-to-llmcore.sh
